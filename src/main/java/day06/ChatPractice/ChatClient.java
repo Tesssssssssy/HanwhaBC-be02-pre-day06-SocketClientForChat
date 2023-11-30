@@ -18,14 +18,14 @@ public class ChatClient {
         BufferedReader bufferedReader = null;
         PrintWriter printWriter = null;
 
-        Socket clientSocket = null;
+        Socket socket = null;
         Scanner scanner = new Scanner(System.in);
 
         try {
-            clientSocket = new Socket("192.168.0.115", 9999);
+            socket = new Socket("192.168.0.115", 9999);
 
-            bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            printWriter = new PrintWriter(clientSocket.getOutputStream());
+            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            printWriter = new PrintWriter(socket.getOutputStream());
 
             System.out.print("전송하기>>> ");
             String outputMessage = scanner.nextLine();
@@ -40,7 +40,7 @@ public class ChatClient {
             throw new RuntimeException(e);
         } finally {
             scanner.close();
-            if (clientSocket != null) clientSocket.close();
+            if (socket != null) socket.close();
         }
     }
 }
